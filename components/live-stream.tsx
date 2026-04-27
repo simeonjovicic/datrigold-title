@@ -24,9 +24,16 @@ export function LiveStream() {
         <div className="grid lg:grid-cols-[2fr_1fr] gap-4 lg:gap-6">
           {/* Player */}
           <div className="relative aspect-video gold-border bg-charcoal overflow-hidden group">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_60%,rgba(169,120,36,0.26)_0%,#3a332a_75%)]" />
-            <PlayerArt />
-            <div className="absolute inset-0 grain opacity-25" />
+            <video
+              src={LIVE.videoSrc}
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/10 to-transparent" />
 
             {/* live badge */}
             <div className="absolute top-4 left-4 flex items-center gap-2">
@@ -124,31 +131,5 @@ function Stat({ label, value }: { label: string; value: string }) {
       <div className="font-display text-lg gold-text leading-none">{value}</div>
       <div className="text-[9px] tracking-[0.3em] uppercase text-charcoal/45 mt-1">{label}</div>
     </div>
-  );
-}
-
-function PlayerArt() {
-  return (
-    <svg viewBox="0 0 800 450" className="absolute inset-0 w-full h-full opacity-90" preserveAspectRatio="xMidYMid slice" aria-hidden>
-      <defs>
-        <radialGradient id="ring-glow" cx="50%" cy="65%" r="55%">
-          <stop offset="0%" stopColor="#d4a857" stopOpacity="0.20" />
-          <stop offset="100%" stopColor="#3a332a" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="800" height="450" fill="url(#ring-glow)" />
-      <g fill="#24201b">
-        <ellipse cx="280" cy="200" rx="48" ry="58" />
-        <path d="M190 270 Q280 220 370 270 L395 440 Q280 470 165 440 Z" />
-        <ellipse cx="520" cy="200" rx="48" ry="58" />
-        <path d="M430 270 Q520 220 610 270 L635 440 Q520 470 405 440 Z" />
-      </g>
-      {/* ring ropes */}
-      <g stroke="#c8102e" strokeOpacity="0.4" strokeWidth="2">
-        <line x1="0" y1="380" x2="800" y2="380" />
-        <line x1="0" y1="410" x2="800" y2="410" />
-        <line x1="0" y1="440" x2="800" y2="440" />
-      </g>
-    </svg>
   );
 }

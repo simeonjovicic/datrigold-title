@@ -26,8 +26,8 @@ export function News({ all = false }: { all?: boolean }) {
         <div className="grid md:grid-cols-3 gap-5">
           {list.map((n, i) => (
             <Link
-              key={i}
-              href="#"
+              key={n.slug}
+              href={`/news/${n.slug}`}
               className="group relative overflow-hidden paper-card hover:border-gold transition-colors"
             >
               <div className="relative aspect-[16/9] overflow-hidden bg-paper-2">
