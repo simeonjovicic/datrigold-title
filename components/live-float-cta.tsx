@@ -13,6 +13,11 @@ export function LiveFloatCta() {
 
   useEffect(() => {
     setHidden(window.localStorage.getItem(STORAGE_KEY) === "true");
+
+    const show = () => setHidden(false);
+    window.addEventListener("gold-title-live-cta-show", show);
+
+    return () => window.removeEventListener("gold-title-live-cta-show", show);
   }, []);
 
   if (!LIVE.isLive || pathname === "/live" || hidden) return null;

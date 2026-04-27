@@ -32,7 +32,7 @@ export function News({ all = false }: { all?: boolean }) {
             >
               <div className="relative aspect-[16/9] overflow-hidden bg-paper-2">
                 <div className="absolute inset-0 bg-gradient-to-b from-paper-2 to-paper-3" />
-                <NewsArt seed={i} />
+                <NewsArt seed={i} tag={n.tag} />
                 <div className="absolute inset-0 grain opacity-20" />
               </div>
               <div className="p-5 lg:p-6">
@@ -59,12 +59,14 @@ export function News({ all = false }: { all?: boolean }) {
   );
 }
 
-function NewsArt({ seed }: { seed: number }) {
+function NewsArt({ seed, tag }: { seed: number; tag: string }) {
+  const color = tag === "HAUPTKAMPF" ? "#a43d35" : tag === "INTERVIEW" ? "#9b7a32" : "#3f474d";
+
   return (
     <svg viewBox="0 0 400 250" className="absolute inset-0 w-full h-full opacity-70" preserveAspectRatio="xMidYMid slice" aria-hidden>
       <defs>
         <radialGradient id={`n-${seed}`} cx="50%" cy="40%" r="55%">
-          <stop offset="0%" stopColor={seed % 2 === 0 ? "#e3b75a" : "#b63237"} stopOpacity="0.22" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.26" />
           <stop offset="100%" stopColor="#fbf8f1" stopOpacity="0" />
         </radialGradient>
       </defs>

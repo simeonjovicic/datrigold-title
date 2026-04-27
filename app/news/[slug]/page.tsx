@@ -76,7 +76,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
         <div className="mx-auto mt-10 max-w-7xl px-6 lg:px-10">
           <div className="relative aspect-[16/7] overflow-hidden border border-charcoal/12 bg-paper-2">
             <div className="absolute inset-0 bg-gradient-to-br from-paper via-paper-2 to-paper-3" />
-            <ArticleArt seed={NEWS.findIndex((item) => item.slug === article.slug)} />
+            <ArticleArt seed={NEWS.findIndex((item) => item.slug === article.slug)} tag={article.tag} />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/72 via-charcoal/5 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5">
               <div className="font-display text-[10px] tracking-[0.35em] text-gold-bright">GOLD TITLE REDAKTION</div>
@@ -127,12 +127,15 @@ export default async function NewsArticlePage({ params }: PageProps) {
   );
 }
 
-function ArticleArt({ seed }: { seed: number }) {
+function ArticleArt({ seed, tag }: { seed: number; tag: string }) {
+  const color = tag === "HAUPTKAMPF" ? "#a43d35" : tag === "INTERVIEW" ? "#9b7a32" : "#3f474d";
+  const lineColor = tag === "RANGLISTE" ? "#3f474d" : "#a43d35";
+
   return (
     <svg viewBox="0 0 1200 520" className="absolute inset-0 h-full w-full opacity-80" preserveAspectRatio="xMidYMid slice" aria-hidden>
       <defs>
         <radialGradient id={`article-${seed}`} cx="50%" cy="45%" r="55%">
-          <stop offset="0%" stopColor={seed % 2 === 0 ? "#b99343" : "#a43d35"} stopOpacity="0.22" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.24" />
           <stop offset="100%" stopColor="#f8f6f0" stopOpacity="0" />
         </radialGradient>
       </defs>
@@ -143,7 +146,7 @@ function ArticleArt({ seed }: { seed: number }) {
         <ellipse cx="735" cy="210" rx="62" ry="74" />
         <path d="M620 300 Q735 230 850 300 L895 560 Q735 610 575 560 Z" />
       </g>
-      <g stroke="#a43d35" strokeOpacity="0.22" strokeWidth="3">
+      <g stroke={lineColor} strokeOpacity="0.22" strokeWidth="3">
         <line x1="0" y1="430" x2="1200" y2="430" />
         <line x1="0" y1="470" x2="1200" y2="470" />
       </g>

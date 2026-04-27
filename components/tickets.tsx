@@ -39,7 +39,7 @@ export function Tickets({ hideHeading = false }: { hideHeading?: boolean }) {
                 Private Skyboxen für 12 bis 40 Gäste. Eigener Host, Getränke-Service, Dinner und personalisierte Programme.
               </p>
               <Link
-                href="/contact/get-in-touch"
+                href="/checkout?tier=SKYBOX"
                 className="mt-6 inline-flex items-center gap-3 px-6 h-12 bg-charcoal text-bone hover:bg-gold font-display text-sm tracking-[0.32em] transition-colors"
               >
                 SUITE ANFRAGEN
@@ -58,7 +58,7 @@ export function Tickets({ hideHeading = false }: { hideHeading?: boolean }) {
               <div className="mt-6 flex items-end justify-between">
                 <span className="font-display text-5xl gold-text">€29</span>
                 <Link
-                  href="/live"
+                  href="/checkout?tier=STREAM"
                   className="inline-flex items-center gap-2 px-5 h-11 bg-blood hover:bg-blood-deep font-display text-sm tracking-[0.32em] text-bone"
                 >
                   STREAMEN
@@ -112,7 +112,7 @@ function TicketCard({
       </ul>
 
       <Link
-        href="#"
+        href={`/checkout?tier=${encodeURIComponent(ticket.tier)}`}
         className={`mt-8 inline-flex items-center justify-center gap-2 h-13 px-6 font-display text-sm tracking-[0.32em] transition-colors ${
           ticket.featured
             ? "bg-gold text-charcoal hover:bg-gold-bright"
