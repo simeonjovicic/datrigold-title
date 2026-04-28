@@ -35,3 +35,4 @@ Thumbs.db
 
 
 ./media
+public/media/*.mp4
