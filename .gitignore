@@ -33,6 +33,4 @@ Thumbs.db
 # local tool state
 .claude/
 
-# local demo media
-media/
-public/media/*.mp4
+
