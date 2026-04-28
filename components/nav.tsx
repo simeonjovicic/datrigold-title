@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./logo";
+import { useState, useEffect } from "react";
 
 const links = [
   { href: "/live", label: "Live" },
@@ -16,6 +17,22 @@ const links = [
 
 export function Nav() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   const showLivePreview = () => {
     window.localStorage.removeItem("gold-title-live-cta-hidden");
@@ -73,11 +90,56 @@ export function Nav() {
             }`}
           >
             Tickets
-            <span aria-hidden>→</span>
+            <span aria-hidden className="hidden sm:inline">→</span>
           </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="xl:hidden flex items-center justify-center h-10 w-10 border border-charcoal/10 text-charcoal transition-colors hover:border-gold hover:text-gold relative"
+            aria-label="Menü umschalten"
+          >
+            <div className="relative w-4 h-2.5">
+              <span className={`absolute left-0 w-full h-[1.5px] bg-current transition-all duration-300 ${isOpen ? 'top-1 rotate-45' : 'top-0'}`} />
+              <span className={`absolute left-0 w-full h-[1.5px] bg-current transition-all duration-300 ${isOpen ? 'top-1 -rotate-45' : 'bottom-0'}`} />
+            </div>
+          </button>
         </div>
       </div>
-      <div className="h-px gold-line opacity-50" />
+      <div className="h-px gold-line opacity-50 relative z-10" />
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 top-[64px] lg:top-[80px] z-40 bg-paper/98 backdrop-blur-xl transition-all duration-500 xl:hidden ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] px-6 gap-8 pb-10 overflow-y-auto">
+          {links.map((link, i) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className={`font-display text-3xl sm:text-4xl tracking-[0.2em] transition-colors ${
+                isActive(link.href) ? "text-gold" : "text-charcoal hover:text-gold"
+              }`}
+              style={{
+                opacity: isOpen ? 1 : 0,
+                transform: isOpen ? "translateY(0)" : "translateY(20px)",
+                transition: `all 0.4s cubic-bezier(0.2, 0.7, 0.1, 1) ${0.1 + i * 0.05}s`
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div 
+            className="mt-8 h-px w-24 gold-line"
+            style={{
+              opacity: isOpen ? 0.5 : 0,
+              transform: isOpen ? "translateY(0)" : "translateY(20px)",
+              transition: `all 0.4s cubic-bezier(0.2, 0.7, 0.1, 1) ${0.1 + links.length * 0.05}s`
+            }}
+          />
+        </div>
+      </div>
     </header>
   );
 }

@@ -1,7 +1,64 @@
+"use client";
+
 import Link from "next/link";
 import { LIVE } from "@/lib/data";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 export function LiveStream() {
+  const router = useRouter();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setIsPlaying(true);
+    } else {
+      v.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  const handleProgressClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    const bar = progressRef.current;
+    if (!v || !bar) return;
+    const rect = bar.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    v.currentTime = ratio * v.duration;
+  }, []);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const savedTime = localStorage.getItem("gt-video-time");
+    if (savedTime) {
+      v.currentTime = parseFloat(savedTime);
+    }
+
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    const onTimeUpdate = () => {
+      if (v.duration) setProgress((v.currentTime / v.duration) * 100);
+      localStorage.setItem("gt-video-time", v.currentTime.toString());
+    };
+    v.addEventListener("play", onPlay);
+    v.addEventListener("pause", onPause);
+    v.addEventListener("timeupdate", onTimeUpdate);
+    return () => {
+      v.removeEventListener("play", onPlay);
+      v.removeEventListener("pause", onPause);
+      v.removeEventListener("timeupdate", onTimeUpdate);
+    };
+  }, []);
+
   if (!LIVE.isLive) return null;
 
   return (
@@ -23,8 +80,12 @@ export function LiveStream() {
 
         <div className="grid lg:grid-cols-[2fr_1fr] gap-4 lg:gap-6">
           {/* Player */}
-          <div className="relative aspect-video gold-border bg-charcoal overflow-hidden group">
+          <div 
+            className="relative aspect-video gold-border bg-charcoal overflow-hidden group cursor-pointer"
+            onClick={() => router.push("/live")}
+          >
             <video
+              ref={videoRef}
               src={LIVE.videoSrc}
               className="absolute inset-0 h-full w-full object-cover"
               autoPlay
@@ -33,10 +94,10 @@ export function LiveStream() {
               playsInline
               preload="metadata"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/10 to-transparent pointer-events-none" />
 
             {/* live badge */}
-            <div className="absolute top-4 left-4 flex items-center gap-2">
+            <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
               <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-blood text-bone font-display text-[10px] tracking-[0.32em]">
                 <span className="w-1.5 h-1.5 bg-bone rounded-full animate-pulse" />
                 LIVE
@@ -47,14 +108,21 @@ export function LiveStream() {
             </div>
 
             {/* center play */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 pointer-events-none ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
               <button className="relative w-18 h-18 rounded-full bg-paper/90 backdrop-blur-sm gold-border flex items-center justify-center transition-colors hover:bg-paper-2">
-                <span className="ml-1 text-gold text-3xl">▶</span>
+                {isPlaying ? (
+                  <svg className="text-gold" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                ) : (
+                  <span className="ml-1 text-gold text-3xl">▶</span>
+                )}
               </button>
             </div>
 
             {/* bottom bar */}
-            <div className="absolute inset-x-0 bottom-0 p-4 lg:p-5 bg-gradient-to-t from-charcoal/90 to-transparent">
+            <div className="absolute inset-x-0 bottom-0 p-4 lg:p-5 bg-gradient-to-t from-charcoal/90 to-transparent pointer-events-none">
               <div className="flex items-end justify-between gap-4">
                 <div>
                   <div className="font-display text-lg lg:text-2xl text-bone leading-tight">
@@ -75,9 +143,19 @@ export function LiveStream() {
                   ))}
                 </div>
               </div>
-              <div className="mt-3 h-1 bg-white/10 relative">
-                <div className="absolute inset-y-0 left-0 w-[42%] bg-blood" />
-                <div className="absolute -top-1 left-[42%] w-3 h-3 rounded-full bg-blood ring-2 ring-bone/80" />
+              <div 
+                ref={progressRef}
+                className="mt-3 h-1.5 bg-white/10 relative pointer-events-auto cursor-pointer group"
+                onClick={handleProgressClick}
+              >
+                <div 
+                  className="absolute inset-y-0 left-0 bg-blood transition-[width] duration-100" 
+                  style={{ width: `${progress}%` }} 
+                />
+                <div 
+                  className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-blood ring-2 ring-bone/80 opacity-0 group-hover:opacity-100 transition-opacity" 
+                  style={{ left: `${progress}%`, transform: 'translate(-50%, -50%)' }} 
+                />
               </div>
             </div>
           </div>

@@ -286,7 +286,7 @@ export const LIVE = {
   subtitle: "Runde 7 · Kova gegen Akande",
   viewers: 184_320,
   startedAtIso: "2026-09-19T20:00:00Z",
-  videoSrc: "/media/fight-demo.mp4",
+  videoSrc: "/example_fight.mp4",
 };
 
 export const LIVE_COMMENTS = [

@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { FIGHTERS, LIVE, LIVE_COMMENTS } from "@/lib/data";
+import { useRef, useEffect } from "react";
 
 const upNext = [
   { time: "21:42", a: "Morata", b: "Park", weight: "Federgewichtstitel" },
@@ -13,6 +16,24 @@ const kova = FIGHTERS[0];
 const akande = FIGHTERS[1];
 
 export default function LivePage() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const savedTime = localStorage.getItem("gt-video-time");
+    if (savedTime) {
+      v.currentTime = parseFloat(savedTime);
+    }
+
+    const onTimeUpdate = () => {
+      localStorage.setItem("gt-video-time", v.currentTime.toString());
+    };
+    v.addEventListener("timeupdate", onTimeUpdate);
+    return () => v.removeEventListener("timeupdate", onTimeUpdate);
+  }, []);
+
   return (
     <main className="relative">
       <Nav />
@@ -44,6 +65,7 @@ export default function LivePage() {
             <div className="overflow-hidden border border-charcoal/15 bg-charcoal">
               <div className="relative aspect-video">
                 <video
+                  ref={videoRef}
                   src={LIVE.videoSrc}
                   className="h-full w-full object-cover"
                   controls
