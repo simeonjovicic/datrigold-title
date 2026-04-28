@@ -27,6 +27,159 @@
 }
 
 @layer base {
+  html[data-colorway="darker"] {
+    --color-paper: #e5ded1;
+    --color-paper-2: #d1c5b3;
+    --color-paper-3: #b8a98f;
+    --color-ink: #111214;
+    --color-ink-2: #1b1d20;
+    --color-ink-3: #272a2e;
+    --color-bone: #fff9ec;
+    --color-charcoal: #17191c;
+    --color-charcoal-2: #2d3338;
+    --color-blood: #8f2f2c;
+    --color-blood-deep: #67211f;
+    --color-gold: #846424;
+    --color-gold-bright: #a98233;
+    --color-gold-deep: #5b451d;
+  }
+
+  html[data-colorway="gore"] {
+    --color-paper: #160b0b;
+    --color-paper-2: #211111;
+    --color-paper-3: #321416;
+    --color-ink: #070303;
+    --color-ink-2: #100707;
+    --color-ink-3: #1d0b0d;
+    --color-bone: #f6eadb;
+    --color-charcoal: #f6eadb;
+    --color-charcoal-2: #d3b8a4;
+    --color-blood: #d11124;
+    --color-blood-deep: #85000c;
+    --color-gold: #d92323;
+    --color-gold-bright: #ff4d3d;
+    --color-gold-deep: #99141c;
+  }
+
+  html[data-colorway="gromda"] {
+    --color-paper: #050505;
+    --color-paper-2: #111111;
+    --color-paper-3: #202020;
+    --color-ink: #000000;
+    --color-ink-2: #0a0a0a;
+    --color-ink-3: #151515;
+    --color-bone: #dddddd;
+    --color-charcoal: #dddddd;
+    --color-charcoal-2: #a8a8a8;
+    --color-blood: #cc0027;
+    --color-blood-deep: #8a001a;
+    --color-gold: #cc0027;
+    --color-gold-bright: #ff244d;
+    --color-gold-deep: #99001d;
+  }
+
+  html[data-colorway="noir"] {
+    --color-paper: #0b0b0a;
+    --color-paper-2: #151411;
+    --color-paper-3: #242016;
+    --color-ink: #030303;
+    --color-ink-2: #090908;
+    --color-ink-3: #171612;
+    --color-bone: #f3ead8;
+    --color-charcoal: #f3ead8;
+    --color-charcoal-2: #c7b89b;
+    --color-blood: #9f1f26;
+    --color-blood-deep: #671318;
+    --color-gold: #c89b3c;
+    --color-gold-bright: #f0c66a;
+    --color-gold-deep: #806120;
+  }
+
+  html[data-colorway="ice"] {
+    --color-paper: #eef3f7;
+    --color-paper-2: #d8e3ea;
+    --color-paper-3: #bdccd6;
+    --color-ink: #101820;
+    --color-ink-2: #18232d;
+    --color-ink-3: #253445;
+    --color-bone: #fbfdff;
+    --color-charcoal: #18232d;
+    --color-charcoal-2: #3a5265;
+    --color-blood: #b22a35;
+    --color-blood-deep: #7f1c25;
+    --color-gold: #4d8fb3;
+    --color-gold-bright: #7dbbda;
+    --color-gold-deep: #2c5f7c;
+  }
+
+  html[data-colorway="neon"] {
+    --color-paper: #05070b;
+    --color-paper-2: #0b1118;
+    --color-paper-3: #121d27;
+    --color-ink: #020306;
+    --color-ink-2: #070a10;
+    --color-ink-3: #101824;
+    --color-bone: #e9fbff;
+    --color-charcoal: #e9fbff;
+    --color-charcoal-2: #8ec5d4;
+    --color-blood: #ff214f;
+    --color-blood-deep: #a9002d;
+    --color-gold: #00d5ff;
+    --color-gold-bright: #69ecff;
+    --color-gold-deep: #0085aa;
+  }
+
+  html[data-colorway="royal"] {
+    --color-paper: #08111f;
+    --color-paper-2: #101d31;
+    --color-paper-3: #1a2b47;
+    --color-ink: #030812;
+    --color-ink-2: #08101d;
+    --color-ink-3: #13213a;
+    --color-bone: #eef1f5;
+    --color-charcoal: #eef1f5;
+    --color-charcoal-2: #aeb8c7;
+    --color-blood: #b4333a;
+    --color-blood-deep: #762027;
+    --color-gold: #d6ad54;
+    --color-gold-bright: #f1d384;
+    --color-gold-deep: #8b6c2d;
+  }
+
+  html[data-colorway="toxic"] {
+    --color-paper: #07110b;
+    --color-paper-2: #0e1d12;
+    --color-paper-3: #18301c;
+    --color-ink: #020704;
+    --color-ink-2: #061009;
+    --color-ink-3: #102017;
+    --color-bone: #edf8df;
+    --color-charcoal: #edf8df;
+    --color-charcoal-2: #b7c99b;
+    --color-blood: #c42032;
+    --color-blood-deep: #81111f;
+    --color-gold: #96d92f;
+    --color-gold-bright: #c6ff61;
+    --color-gold-deep: #5f8f17;
+  }
+
+  html[data-colorway="vintage"] {
+    --color-paper: #efe0bf;
+    --color-paper-2: #dbc79e;
+    --color-paper-3: #c2a876;
+    --color-ink: #18110d;
+    --color-ink-2: #241d18;
+    --color-ink-3: #342820;
+    --color-bone: #fff1d1;
+    --color-charcoal: #241d18;
+    --color-charcoal-2: #5f4935;
+    --color-blood: #9b3028;
+    --color-blood-deep: #68201b;
+    --color-gold: #8b6828;
+    --color-gold-bright: #b78935;
+    --color-gold-deep: #5a421b;
+  }
+
   html, body {
     background: var(--color-paper);
     color: var(--color-charcoal);
@@ -42,8 +195,20 @@
 
   body {
     background-image:
-      radial-gradient(1200px 600px at 80% -10%, rgba(155,122,50,0.045), transparent 60%),
-      radial-gradient(900px 500px at 0% 10%, rgba(63,71,77,0.035), transparent 60%),
+      radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--color-gold) 9%, transparent), transparent 60%),
+      radial-gradient(900px 500px at 0% 10%, color-mix(in srgb, var(--color-charcoal-2) 7%, transparent), transparent 60%),
+      linear-gradient(var(--color-paper), var(--color-paper));
+  }
+
+  html[data-colorway="gore"] body,
+  html[data-colorway="gromda"] body,
+  html[data-colorway="noir"] body,
+  html[data-colorway="neon"] body,
+  html[data-colorway="royal"] body,
+  html[data-colorway="toxic"] body {
+    background-image:
+      radial-gradient(900px 520px at 50% -10%, color-mix(in srgb, var(--color-blood) 18%, transparent), transparent 62%),
+      radial-gradient(760px 420px at 8% 12%, color-mix(in srgb, var(--color-blood-deep) 18%, transparent), transparent 68%),
       linear-gradient(var(--color-paper), var(--color-paper));
   }
 }
@@ -66,17 +231,86 @@
   }
 
   .gold-line {
-    background: linear-gradient(90deg, transparent, rgba(155,122,50,0.42) 50%, transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-gold) 42%, transparent) 50%, transparent);
   }
 
   .paper-card {
-    background: #fffdf7;
-    border: 1px solid rgba(31,35,38,0.12);
+    background: var(--color-bone);
+    border: 1px solid color-mix(in srgb, var(--color-charcoal) 12%, transparent);
   }
 
   .gold-border {
-    border: 1px solid rgba(155,122,50,0.30);
+    border: 1px solid color-mix(in srgb, var(--color-gold) 30%, transparent);
     box-shadow: none;
+  }
+
+  html[data-colorway="gore"] .paper-card,
+  html[data-colorway="gromda"] .paper-card,
+  html[data-colorway="noir"] .paper-card,
+  html[data-colorway="neon"] .paper-card,
+  html[data-colorway="royal"] .paper-card,
+  html[data-colorway="toxic"] .paper-card {
+    background: color-mix(in srgb, var(--color-paper-2) 86%, black);
+  }
+
+  html[data-colorway="gore"] .bg-charcoal,
+  html[data-colorway="gore"] .bg-charcoal\/75,
+  html[data-colorway="gore"] .bg-charcoal\/76,
+  html[data-colorway="gore"] .bg-charcoal\/78,
+  html[data-colorway="gore"] .bg-charcoal\/80,
+  html[data-colorway="gore"] .bg-charcoal\/82,
+  html[data-colorway="gore"] .bg-charcoal\/85,
+  html[data-colorway="gore"] .bg-charcoal\/88,
+  html[data-colorway="gromda"] .bg-charcoal,
+  html[data-colorway="gromda"] .bg-charcoal\/75,
+  html[data-colorway="gromda"] .bg-charcoal\/76,
+  html[data-colorway="gromda"] .bg-charcoal\/78,
+  html[data-colorway="gromda"] .bg-charcoal\/80,
+  html[data-colorway="gromda"] .bg-charcoal\/82,
+  html[data-colorway="gromda"] .bg-charcoal\/85,
+  html[data-colorway="gromda"] .bg-charcoal\/88,
+  html[data-colorway="noir"] .bg-charcoal,
+  html[data-colorway="noir"] .bg-charcoal\/75,
+  html[data-colorway="noir"] .bg-charcoal\/76,
+  html[data-colorway="noir"] .bg-charcoal\/78,
+  html[data-colorway="noir"] .bg-charcoal\/80,
+  html[data-colorway="noir"] .bg-charcoal\/82,
+  html[data-colorway="noir"] .bg-charcoal\/85,
+  html[data-colorway="noir"] .bg-charcoal\/88,
+  html[data-colorway="neon"] .bg-charcoal,
+  html[data-colorway="neon"] .bg-charcoal\/75,
+  html[data-colorway="neon"] .bg-charcoal\/76,
+  html[data-colorway="neon"] .bg-charcoal\/78,
+  html[data-colorway="neon"] .bg-charcoal\/80,
+  html[data-colorway="neon"] .bg-charcoal\/82,
+  html[data-colorway="neon"] .bg-charcoal\/85,
+  html[data-colorway="neon"] .bg-charcoal\/88,
+  html[data-colorway="royal"] .bg-charcoal,
+  html[data-colorway="royal"] .bg-charcoal\/75,
+  html[data-colorway="royal"] .bg-charcoal\/76,
+  html[data-colorway="royal"] .bg-charcoal\/78,
+  html[data-colorway="royal"] .bg-charcoal\/80,
+  html[data-colorway="royal"] .bg-charcoal\/82,
+  html[data-colorway="royal"] .bg-charcoal\/85,
+  html[data-colorway="royal"] .bg-charcoal\/88,
+  html[data-colorway="toxic"] .bg-charcoal,
+  html[data-colorway="toxic"] .bg-charcoal\/75,
+  html[data-colorway="toxic"] .bg-charcoal\/76,
+  html[data-colorway="toxic"] .bg-charcoal\/78,
+  html[data-colorway="toxic"] .bg-charcoal\/80,
+  html[data-colorway="toxic"] .bg-charcoal\/82,
+  html[data-colorway="toxic"] .bg-charcoal\/85,
+  html[data-colorway="toxic"] .bg-charcoal\/88 {
+    background-color: var(--color-ink-2) !important;
+  }
+
+  html[data-colorway="gore"] .border-white\/5,
+  html[data-colorway="gromda"] .border-white\/5,
+  html[data-colorway="noir"] .border-white\/5,
+  html[data-colorway="neon"] .border-white\/5,
+  html[data-colorway="royal"] .border-white\/5,
+  html[data-colorway="toxic"] .border-white\/5 {
+    border-color: color-mix(in srgb, var(--color-blood) 22%, transparent);
   }
 
   .grain::before {
@@ -104,8 +338,8 @@
     inset: 0;
     pointer-events: none;
     background:
-      radial-gradient(60% 50% at 50% 100%, rgba(200,16,46,0.18), transparent 70%),
-      radial-gradient(50% 40% at 50% 0%, rgba(184,138,44,0.10), transparent 70%);
+      radial-gradient(60% 50% at 50% 100%, color-mix(in srgb, var(--color-blood) 18%, transparent), transparent 70%),
+      radial-gradient(50% 40% at 50% 0%, color-mix(in srgb, var(--color-gold) 10%, transparent), transparent 70%);
     filter: blur(8px);
   }
 
@@ -120,14 +354,14 @@
 
   .ring-gold-glow {
     box-shadow:
-      0 0 0 1px rgba(169,120,36,0.36),
-      0 10px 24px rgba(36,32,27,0.10);
+      0 0 0 1px color-mix(in srgb, var(--color-gold) 36%, transparent),
+      0 10px 24px color-mix(in srgb, var(--color-ink) 10%, transparent);
   }
 
   .ring-blood-glow {
     box-shadow:
-      0 0 0 1px rgba(182,50,55,0.32),
-      0 10px 22px rgba(36,32,27,0.12);
+      0 0 0 1px color-mix(in srgb, var(--color-blood) 32%, transparent),
+      0 10px 22px color-mix(in srgb, var(--color-ink) 12%, transparent);
   }
 
   .vignette::after {
@@ -160,11 +394,11 @@
   .belt-shine {
     background: linear-gradient(
       120deg,
-      #6e5727 0%,
-      #9b7a32 25%,
-      #b99343 50%,
-      #9b7a32 75%,
-      #6e5727 100%
+      var(--color-gold-deep) 0%,
+      var(--color-gold) 25%,
+      var(--color-gold-bright) 50%,
+      var(--color-gold) 75%,
+      var(--color-gold-deep) 100%
     );
     background-size: 200% 100%;
     animation: shine 6s linear infinite;

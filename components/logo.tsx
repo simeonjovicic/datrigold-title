@@ -8,9 +8,9 @@ export function Logo({ className }: { className?: string }) {
     >
       <defs>
         <linearGradient id="lg-gold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f6dfa1" />
-          <stop offset="50%" stopColor="#d4a857" />
-          <stop offset="100%" stopColor="#8c6a25" />
+          <stop offset="0%" stopColor="var(--color-gold-bright)" />
+          <stop offset="50%" stopColor="var(--color-gold)" />
+          <stop offset="100%" stopColor="var(--color-gold-deep)" />
         </linearGradient>
       </defs>
       <g fill="none" stroke="url(#lg-gold)" strokeWidth="2">

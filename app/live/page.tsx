@@ -18,7 +18,7 @@ export default function LivePage() {
       <Nav />
 
       <section className="relative overflow-hidden bg-paper pt-28 lg:pt-32 pb-16 lg:pb-20">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8f6f0_0%,#ebe6dc_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-paper to-paper-2" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { LiveFloatCta } from "@/components/live-float-cta";
+import { ThemeColorwayProvider } from "@/components/theme-colorway-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de">
       <body className="min-h-screen overflow-x-hidden bg-paper text-charcoal antialiased">
+        <ThemeColorwayProvider />
         {children}
         <LiveFloatCta />
       </body>

@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[78svh] w-full overflow-hidden pt-16 lg:pt-20 bg-paper">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8f6f0_0%,#ebe6dc_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-paper to-paper-2" />
         <FightSilhouettes />
       </div>
       <div className="absolute inset-0 grain pointer-events-none opacity-25" />
